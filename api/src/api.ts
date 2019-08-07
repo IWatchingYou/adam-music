@@ -2,6 +2,7 @@ import { ApolloServer } from 'apollo-server';
 import { importSchema } from 'graphql-import';
 
 const typeDefs = importSchema('./src/graphql/schema.graphql');
+const port = 3001;
 
 const resolvers = {
     Query: {
@@ -14,6 +15,6 @@ const resolvers = {
 
 const server = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true });
 
-server.listen().then(({ url }) => {
+server.listen(port).then(({ url }) => {
     console.log(`🚀 Server ready at ${url}`);
 });
