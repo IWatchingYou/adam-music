@@ -1,0 +1,8 @@
+{
+  "name": "adam-music",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/IWatchingYou/adam-music.git",
+  "author": "sokphaladam <sokphaladam@gmail.com>",
+  "license": "MIT"
+}
