@@ -14,4 +14,4 @@ COPY --chown=node:node . .
 
 EXPOSE 3001
 
-CMD [ "ts-node", "./src/api.ts" ]
+CMD [ "yarn", "watch-server" ]

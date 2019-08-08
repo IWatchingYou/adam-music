@@ -12,6 +12,7 @@
     "@types/koa-logger": "^3.1.1",
     "@types/koa-mount": "^4.0.0",
     "@types/koa-router": "^7.0.42",
+    "@types/pg": "^7.4.14",
     "apollo-server": "^2.8.1",
     "graphql": "^14.4.2",
     "graphql-import": "^0.7.1",
@@ -23,6 +24,7 @@
     "koa-mount": "^4.0.0",
     "koa-router": "^7.4.0",
     "nodemon": "^1.19.1",
+    "pg": "^7.12.0",
     "request": "^2.88.0",
     "ts-node-dev": "^1.0.0-pre.40",
     "typescript": "^3.5.3"

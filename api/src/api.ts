@@ -1,20 +1,21 @@
-import { ApolloServer } from 'apollo-server';
+import { ApolloServer, gql } from 'apollo-server';
 import { importSchema } from 'graphql-import';
+import { resolvers } from './graphql/resolvers';
 
-const typeDefs = importSchema('./src/graphql/schema.graphql');
-const port = 3001;
+const basicType = gql`${importSchema('./src/graphql/schema.graphql')}`;
+const port = 3003;
 
-const resolvers = {
-    Query: {
-        root: () => 'welcome to koa.'
-    },
-    Mutation: {
-        createRoot: (parent: any, args: any) => args.name
+const mutationUpload = gql`
+    extend type Mutation {
+        singleUpload(file: Upload!): File
     }
-}
+`
 
-const server = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true });
+const server = new ApolloServer({ 
+    typeDefs: [basicType, mutationUpload], 
+    resolvers
+});
 
-server.listen(port).then(({ url }) => {
+server.listen(port).then(({ url }: any) => {
     console.log(`🚀 Server ready at ${url}`);
 });

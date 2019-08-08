@@ -1,7 +1,67 @@
+type Genres {
+    id: ID
+    name: String
+}
+
+type Artist {
+    id: ID
+    name: String
+    gender: String
+    image: String
+}
+
+type Music {
+    id: ID
+    title: String
+    artist: [Artist]
+    genres: [Genres]
+    release: String
+    image: String
+    description: String
+}
+
+type File {
+    filename: String!
+    mimetype: String
+    encoding: String
+}
+
+input musicInput {
+    id: ID
+    title: String
+    artist_id: [Int]
+    genres_id: [Int]
+    release: String
+    image: String
+    description: String
+}
+
+input artistInput {
+    id: ID
+    name: String
+    gender: String
+    image: String
+}
+
+input genresInput {
+    id: ID
+    name: String
+}
+
 type Query {
-    root: String
+    musicList: [Music]
+    artistList: [Artist!]
+    genresList: [Genres!]
+    music(id: Int!): Music
+    artist(id: Int!): Artist
+    genres(id: Int!): Genres
 }
 
 type Mutation {
-    createRoot(name: String!): String
+    createMusic(data: musicInput!): Boolean
+    createArtist(data: artistInput!): Boolean
+    createGenres(data: genresInput!): Boolean
+    updateMusic(data: musicInput!): Boolean
+    updateArtist(data: artistInput!): Boolean
+    updateGenres(data: genresInput!): Boolean
 }
