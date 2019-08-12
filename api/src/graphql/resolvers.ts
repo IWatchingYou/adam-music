@@ -1,5 +1,9 @@
 import { musicList, music, createMusic, updateMusic } from "../controller/musicController";
 import { artistList, artist, createArtist, updateArtist } from "../controller/artistController";
+import { pool } from '../config/connection';
+import { Upload } from "./Upload";
+import { createWriteStream } from "fs";
+import { resolve } from "dns";
 
 export const resolvers = {
     Query: {
@@ -7,7 +11,12 @@ export const resolvers = {
         artistList: artistList,
         music: music,
         artist: artist,
-        genresList: () => { [] }
+        genresList: () => { [] },
+        getDate: () => {
+            return pool.query('select now()')
+            .then(res => res.rows[0])
+            .catch(err => err)
+        } 
     },
     Mutation: {
         createMusic: createMusic,
@@ -17,7 +26,16 @@ export const resolvers = {
         updateArtist: updateArtist,
         updateGenres: (parent: any, args: any) => true,
         singleUpload: async (parent: any, args: any) => {
-            return await args.file.then((fi: any) => fi)
+            await args.file.then((fi: Upload) => {
+                fi
+                .createReadStream()
+                .pipe(
+                    createWriteStream(__dirname + `/images/${fi.filename}`)
+                )
+                .on('close', () => {
+                    
+                })
+            })
         }
     }
 }

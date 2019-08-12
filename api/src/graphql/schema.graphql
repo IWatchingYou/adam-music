@@ -26,6 +26,10 @@ type File {
     encoding: String
 }
 
+type Date {
+    now: String!
+}
+
 input musicInput {
     id: ID
     title: String
@@ -55,6 +59,7 @@ type Query {
     music(id: Int!): Music
     artist(id: Int!): Artist
     genres(id: Int!): Genres
+    getDate: Date!
 }
 
 type Mutation {
