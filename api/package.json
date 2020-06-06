@@ -13,7 +13,7 @@
     "@types/koa-mount": "^4.0.0",
     "@types/koa-router": "^7.0.42",
     "@types/pg": "^7.4.14",
-    "apollo-server": "^2.8.1",
+    "apollo-server": "^2.14.2",
     "graphql": "^14.4.2",
     "graphql-import": "^0.7.1",
     "koa": "^2.7.0",
